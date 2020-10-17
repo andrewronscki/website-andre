@@ -75,24 +75,19 @@ export const Footer = styled.footer`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 720px;
+  max-width: 960px;
   margin-top: 100px;
   margin-bottom: 32px;
 
   @media (max-width: 450px) {
     flex-direction: column;
   }
-
-  @media (max-width: 830px) {
-    justify-content: center;
-  }
 `;
 
 export const SocialContainer = styled.ul`
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
+  margin: 0 32px;
 
   li {
     display: flex;
@@ -116,11 +111,10 @@ export const SocialContainer = styled.ul`
 `;
 
 export const DeveloperContainer = styled.div`
+  margin: 0 32px;
   display: flex;
+  justify-content: flex-end;
   width: 100%;
-  justify-content: center;
-  align-items: center;
-  
 
   span {
     font-size: 18px;
@@ -146,7 +140,7 @@ export const ExperienceContent = styled.div`
   margin: 32px;
   display: flex;
   flex-direction: row;
-  
+
   + div {
     margin-top: 48px;
   }
@@ -157,7 +151,7 @@ export const ImageExperience = styled.div`
 
   @media (max-width: 825px) {
     display: none;
-  } 
+  }
 `;
 export const DescriptionExperience = styled.div`
   animation: ${appearFromLeft} 1s;
@@ -219,7 +213,7 @@ export const ContactMe = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  max-width: 1200px;
+  max-width: 960px;
 `;
 
 export const ContactImage = styled.div`
@@ -229,7 +223,7 @@ export const ContactImage = styled.div`
 
   @media (max-width: 830px) {
     display: none;
-  } 
+  }
 `;
 
 export const ContactContent = styled.div`
@@ -244,7 +238,7 @@ export const ContactContent = styled.div`
     justify-content: center;
     align-items: center;
     animation: ${appearFromLeft} 1s;
-    
+
     img {
       margin-right: 16px;
     }
@@ -264,5 +258,5 @@ export const ContactContent = styled.div`
     }
   }
 
- 
+
 `;
