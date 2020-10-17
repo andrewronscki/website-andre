@@ -3,6 +3,7 @@ import background from '@/assets/background.png';
 
 export const ContainerHeader = styled.div`
   display: flex;
+  padding: 32px;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
@@ -18,12 +19,14 @@ export const ContainerHeader = styled.div`
   background-position: center;
 
   h1 {
+    text-align: center;
     font-weight: 700;
     font-size: 32px;
     color: #f1f1f1;
   }
 
   p {
+    text-align: center;
     margin-top: 8px;
     font-weight: 400;
     font-size: 18px;
@@ -40,13 +43,13 @@ export const Image = styled.img`
 `;
 
 export const IconContainer = styled.ul`
+  display: flex;
   margin-top: 100px;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  max-width: 960px;
-
+  max-width: 400px;
+  
   li {
     display: flex;
     justify-content: center;
@@ -66,10 +69,6 @@ export const IconContainer = styled.ul`
         -o-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
       }
-    }
-
-    + li {
-      margin-left: 56px;
     }
   }
 

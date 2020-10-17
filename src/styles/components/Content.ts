@@ -14,6 +14,7 @@ const appearFromLeft = keyframes`
 
 export const ContainerContent = styled.div`
   display: flex;
+  padding: 32px;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
@@ -24,15 +25,25 @@ export const ContainerContent = styled.div`
 `;
 
 export const Content = styled.ul`
-  margin-top: 100px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   width: 100%;
   max-width: 1200px;
+  flex-wrap: wrap;
 
+  li {
+    max-width: 300px;
+    width: 100%;
+  }
   li + li {
-    margin-left: 32px;
+    margin: 0 32px 0 0;
+  }
+
+  @media (max-width: 836px) {
+    li + li {
+      margin: 32px 0 0 0;
+    }
   }
 `;
 
@@ -65,7 +76,10 @@ export const Footer = styled.footer`
   align-items: center;
   width: 100%;
   max-width: 720px;
-  margin-bottom: 48px;
+
+  @media (max-width: 375px) {
+    flex-direction: column;
+  }
 `;
 
 export const SocialContainer = styled.ul`
@@ -91,6 +105,10 @@ export const SocialContainer = styled.ul`
     + li {
       margin-left: 16px;
     }
+  }
+
+  @media (max-width: 375px) {
+    margin-bottom: 8px;
   }
 `;
 
@@ -126,9 +144,14 @@ export const ExperienceContent = styled.div`
 export const ImageExperience = styled.div`
   width: 100%;
   animation: ${appearFromLeft} 1s;
+
+  @media (max-width: 646px) {
+    display: none;
+  } 
 `;
 export const DescriptionExperience = styled.div`
   animation: ${appearFromLeft} 1s;
+
   h1 {
     color: #EA2845;
     margin-bottom: 16px;
@@ -179,18 +202,24 @@ export const Tech = styled.div`
 `;
 
 export const ContactMe = styled.div`
-  margin: 32px 0 100px 0;
+  margin: 100px 0;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
   max-width: 1200px;
 `;
+
 export const ContactImage = styled.div`
   display: flex;
   width: 100%;
   animation: ${appearFromLeft} 1s;
+
+  @media (max-width: 785px) {
+    display: none;
+  } 
 `;
+
 export const ContactContent = styled.div`
   display: flex;
   flex-direction: column;

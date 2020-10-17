@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next';
-import { useEffect, useRef } from 'react';
 import { Container } from '@/styles/pages/Home';
 import { ContainerHeader, Image, IconContainer } from "@/styles/components/Header";
 import { 
@@ -25,7 +24,6 @@ import { client } from '@/lib/prismic';
 import Prismic from 'prismic-javascript';
 import PrismicDom from 'prismic-dom';
 import Typing from "react-typing-animation";
-import {Parallax, ParallaxLayer} from 'react-spring/renderprops-addons'
 
 interface HeaderProps {
   textHeader: Document;
