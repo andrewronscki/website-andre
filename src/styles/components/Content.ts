@@ -108,6 +108,10 @@ export const SocialContainer = styled.ul`
       margin-left: 16px;
     }
   }
+
+  @media (max-width: 450px) {
+    justify-content: center;
+  }
 `;
 
 export const DeveloperContainer = styled.div`
@@ -124,6 +128,7 @@ export const DeveloperContainer = styled.div`
 
   @media (max-width: 450px) {
     margin: 8px;
+    justify-content: center;
   }
 `;
 
