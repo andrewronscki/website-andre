@@ -79,7 +79,7 @@ export const Footer = styled.footer`
   margin-top: 100px;
   margin-bottom: 32px;
 
-  @media (max-width: 375px) {
+  @media (max-width: 450px) {
     flex-direction: column;
   }
 
@@ -128,7 +128,7 @@ export const DeveloperContainer = styled.div`
     color: #f1f1f1;
   }
 
-  @media (max-width: 375px) {
+  @media (max-width: 450px) {
     margin: 8px;
   }
 `;

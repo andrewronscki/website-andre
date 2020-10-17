@@ -18,6 +18,7 @@ export const ContainerHeader = styled.div`
   background-position: center;
 
   h1 {
+    margin: 0 32px;
     text-align: center;
     font-weight: 700;
     font-size: 32px;
@@ -25,8 +26,8 @@ export const ContainerHeader = styled.div`
   }
 
   p {
+    margin: 8px 32px 0 32px;
     text-align: center;
-    margin-top: 8px;
     font-weight: 400;
     font-size: 18px;
     color: #f1f1f1;
