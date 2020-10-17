@@ -49,10 +49,10 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
         <p>{PrismicDom.RichText.asText(textHeader.data.description)}</p>
 
         <IconContainer>
-          {imagesHeader.map(item => (
-            <li key={item.id}>
-              <a href={item.data.url.url} target="_blank">
-                <img src={item.data.image.url} alt={item.data.title} width={item.data.width} />
+          {imagesHeader.map(header => (
+            <li key={header.uid}>
+              <a href={header.data.url.url} target="_blank">
+                <img src={header.data.image.url} alt={header.data.title} width={header.data.width} />
               </a>  
             </li> 
           ))}
@@ -61,7 +61,7 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
       <ContainerContent>
         <Content>
           {skills.map(skill => (
-            <Item key={skill.id}>
+            <Item key={skill.uid}>
               <img src={skill.data.image.url} alt="teste" height="200"/>
               <strong>{PrismicDom.RichText.asText(skill.data.title)}</strong>
               <p>{PrismicDom.RichText.asText(skill.data.description)}</p>
@@ -71,13 +71,13 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
 
         <Experiences>
           {experiences.map(experience => {
-            if(Number(experience.uid) % 2 === 0) {
+            if(Number(experience.id) % 2 === 0) {
               return (
-                <ExperienceContent key={experience.id}>
+                <ExperienceContent key={experience.uid}>
                   <DescriptionExperience>
                     <h1>{PrismicDom.RichText.asText(experience.data.title)}</h1>
                     {experience.data.content.map(content => (
-                      <div key={content.subtitle}>
+                      <div key={content.id}>
                         <h2>{PrismicDom.RichText.asText(content.subtitle)}</h2>
                         <p>{PrismicDom.RichText.asText(content.description)}</p>
                       </div>
@@ -91,14 +91,14 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
               )
             } 
             return (
-              <ExperienceContent key={experience.id}>
+              <ExperienceContent key={experience.uid}>
                 <ImageExperience>
                   <img src={experience.data.image.url} alt={experience.data.image.alt} height={experience.data.height}/>
                 </ImageExperience>
                 <DescriptionExperience>
                   <h1>{PrismicDom.RichText.asText(experience.data.title)}</h1>
                   {experience.data.content.map(content => (
-                    <div key={content.subtitle}>
+                    <div key={content.id}>
                       <h2>{PrismicDom.RichText.asText(content.subtitle)}</h2>
                       <p>{PrismicDom.RichText.asText(content.description)}</p>
                     </div>
@@ -114,7 +114,7 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
           <h1>Alguns dos meus conhecimentos</h1>
           <ContainerTech>
             {technologies.map(tech => (
-              <Tech key={tech.id}>
+              <Tech key={tech.uid}>
                 <img src={tech.data.image.url} alt={tech.data.image.alt} height="40" />
                 <span>{PrismicDom.RichText.asText(tech.data.title)}</span>
               </Tech>
@@ -142,10 +142,10 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
 
         <Footer>
           <SocialContainer>
-            {imagesFooter.map(item => (
-              <li key={item.id}>
-                <a href={item.data.link.url} target="_blank">
-                  <img src={item.data.image.url} alt={item.data.image.alt} width={item.data.width} />
+            {imagesFooter.map(footer => (
+              <li key={footer.uid}>
+                <a href={footer.data.link.url} target="_blank">
+                  <img src={footer.data.image.url} alt={footer.data.image.alt} width={footer.data.width} />
                 </a>
               </li>  
             ))}

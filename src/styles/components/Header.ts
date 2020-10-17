@@ -3,7 +3,6 @@ import background from '@/assets/background.png';
 
 export const ContainerHeader = styled.div`
   display: flex;
-  padding: 32px;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
@@ -44,12 +43,12 @@ export const Image = styled.img`
 
 export const IconContainer = styled.ul`
   display: flex;
-  margin-top: 100px;
+  margin: 100px 32px 0 32px;
   width: 100%;
   justify-content: space-around;
   align-items: center;
   max-width: 400px;
-  
+
   li {
     display: flex;
     justify-content: center;
@@ -70,8 +69,6 @@ export const IconContainer = styled.ul`
         transition: all 0.5s ease-in-out;
       }
     }
-  }
-
-  
+  }  
 `;
 

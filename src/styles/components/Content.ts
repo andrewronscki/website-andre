@@ -14,7 +14,6 @@ const appearFromLeft = keyframes`
 
 export const ContainerContent = styled.div`
   display: flex;
-  padding: 32px;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
@@ -25,6 +24,7 @@ export const ContainerContent = styled.div`
 `;
 
 export const Content = styled.ul`
+  margin: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,9 +76,15 @@ export const Footer = styled.footer`
   align-items: center;
   width: 100%;
   max-width: 720px;
+  margin-top: 100px;
+  margin-bottom: 32px;
 
   @media (max-width: 375px) {
     flex-direction: column;
+  }
+
+  @media (max-width: 830px) {
+    justify-content: center;
   }
 `;
 
@@ -86,6 +92,7 @@ export const SocialContainer = styled.ul`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 
   li {
     display: flex;
@@ -106,21 +113,23 @@ export const SocialContainer = styled.ul`
       margin-left: 16px;
     }
   }
-
-  @media (max-width: 375px) {
-    margin-bottom: 8px;
-  }
 `;
 
 export const DeveloperContainer = styled.div`
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
+  
 
   span {
     font-size: 18px;
     font-weight: 400;
     color: #f1f1f1;
+  }
+
+  @media (max-width: 375px) {
+    margin: 8px;
   }
 `;
 
@@ -134,6 +143,7 @@ export const Experiences = styled.div`
   max-width: 960px;
 `;
 export const ExperienceContent = styled.div`
+  margin: 32px;
   display: flex;
   flex-direction: row;
   
@@ -145,7 +155,7 @@ export const ImageExperience = styled.div`
   width: 100%;
   animation: ${appearFromLeft} 1s;
 
-  @media (max-width: 646px) {
+  @media (max-width: 825px) {
     display: none;
   } 
 `;
@@ -174,10 +184,12 @@ export const Technologies = styled.div`
   justify-content: center;
 
   h1 {
+    margin: 0 32px;
     margin-bottom: 48px;
   }
 `;
 export const ContainerTech = styled.div`
+  margin: 0 32px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -202,7 +214,7 @@ export const Tech = styled.div`
 `;
 
 export const ContactMe = styled.div`
-  margin: 100px 0;
+  margin: 100px 32px 0 32px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -215,7 +227,7 @@ export const ContactImage = styled.div`
   width: 100%;
   animation: ${appearFromLeft} 1s;
 
-  @media (max-width: 785px) {
+  @media (max-width: 830px) {
     display: none;
   } 
 `;
