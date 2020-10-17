@@ -1,19 +1,19 @@
 import { GetStaticProps } from 'next';
 import { Container } from '@/styles/pages/Home';
 import { ContainerHeader, Image, IconContainer } from "@/styles/components/Header";
-import { 
-  ContainerContent, 
-  Content, 
-  Item, 
-  Footer, 
-  SocialContainer, 
-  DeveloperContainer, 
-  Experiences, 
-  ExperienceContent, 
-  ImageExperience, 
-  DescriptionExperience, 
-  Technologies, 
-  ContainerTech, 
+import {
+  ContainerContent,
+  Content,
+  Item,
+  Footer,
+  SocialContainer,
+  DeveloperContainer,
+  Experiences,
+  ExperienceContent,
+  ImageExperience,
+  DescriptionExperience,
+  Technologies,
+  ContainerTech,
   Tech,
   ContactMe,
   ContactImage,
@@ -45,7 +45,7 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
           <Typing.Delay ms={1200} />
           <h1>{PrismicDom.RichText.asText(textHeader.data.title)}</h1>
         </Typing>
-        
+
         <p>{PrismicDom.RichText.asText(textHeader.data.description)}</p>
 
         <IconContainer>
@@ -53,8 +53,8 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
             <li key={header.uid}>
               <a href={header.data.url.url} target="_blank">
                 <img src={header.data.image.url} alt={header.data.title} width={header.data.width} />
-              </a>  
-            </li> 
+              </a>
+            </li>
           ))}
         </IconContainer>
       </ContainerHeader>
@@ -71,7 +71,7 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
 
         <Experiences>
           {experiences.map(experience => {
-            if(Number(experience.id) % 2 === 0) {
+            if(Number(experience.uid) % 2 === 0) {
               return (
                 <ExperienceContent key={experience.uid}>
                   <DescriptionExperience>
@@ -81,7 +81,7 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
                         <h2>{PrismicDom.RichText.asText(content.subtitle)}</h2>
                         <p>{PrismicDom.RichText.asText(content.description)}</p>
                       </div>
-                      
+
                     ))}
                   </DescriptionExperience>
                   <ImageExperience>
@@ -89,7 +89,7 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
                   </ImageExperience>
                 </ExperienceContent>
               )
-            } 
+            }
             return (
               <ExperienceContent key={experience.uid}>
                 <ImageExperience>
@@ -102,14 +102,14 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
                       <h2>{PrismicDom.RichText.asText(content.subtitle)}</h2>
                       <p>{PrismicDom.RichText.asText(content.description)}</p>
                     </div>
-                    
+
                   ))}
                 </DescriptionExperience>
               </ExperienceContent>
             )
           })}
         </Experiences>
-        
+
         <Technologies>
           <h1>Alguns dos meus conhecimentos</h1>
           <ContainerTech>
@@ -147,7 +147,7 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
                 <a href={footer.data.link.url} target="_blank">
                   <img src={footer.data.image.url} alt={footer.data.image.alt} width={footer.data.width} />
                 </a>
-              </li>  
+              </li>
             ))}
           </SocialContainer>
           <DeveloperContainer>
@@ -155,7 +155,7 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
           </DeveloperContainer>
         </Footer>
 
-      </ContainerContent>  
+      </ContainerContent>
     </Container>
   )
 }
@@ -184,14 +184,14 @@ export const getStaticProps: GetStaticProps<HeaderProps> = async (context) => {
 
   const experiences= await client().query([
     Prismic.Predicates.at('document.type', 'experiences')
-    
+
   ], { orderings : '[my.experiences.uid]'});
 
   const technologies= await client().query([
     Prismic.Predicates.at('document.type', 'technologies')
-    
+
   ], { orderings : '[my.technologies.position]'});
-  
+
   return {
     props: {
       textHeader: textHeader.results[0],
@@ -203,5 +203,5 @@ export const getStaticProps: GetStaticProps<HeaderProps> = async (context) => {
       technologies: technologies.results,
     }
   }
- 
+
 }
