@@ -1,6 +1,8 @@
 import { GetStaticProps } from 'next';
+import Image from 'next/image'
+import { useRouter } from 'next/router';
 import { Container } from '@/styles/pages/Home';
-import { ContainerHeader, Image, IconContainer } from "@/styles/components/Header";
+import { ContainerHeader, Image as ImageStyle, IconContainer } from "@/styles/components/Header";
 import {
   ContainerContent,
   Content,
@@ -17,13 +19,15 @@ import {
   Tech,
   ContactMe,
   ContactImage,
-  ContactContent
+  ContactContent,
+  ContainerLocale
  } from "@/styles/components/Content";
 import { Document } from 'prismic-javascript/types/documents';
 import { client } from '@/lib/prismic';
 import Prismic from 'prismic-javascript';
 import PrismicDom from 'prismic-dom';
 import Typing from "react-typing-animation";
+import React, { useCallback, useState } from 'react';
 
 interface HeaderProps {
   textHeader: Document;
@@ -36,17 +40,49 @@ interface HeaderProps {
 }
 
 export default function Home({ textHeader, imagesHeader, skills, imagesFooter, textFooter, experiences, technologies }: HeaderProps) {
+  const router = useRouter();
+  const [locale, setLocale] = useState(router.locale);
+
+  const handleChangeLocale = useCallback((changeLocale) => {
+    setLocale(changeLocale);
+  }, [])
+
   return (
     <Container>
       <ContainerHeader>
-        <Image src={textHeader.data.image.url} alt="André" />
+        <ContainerLocale>
+          <div>
+            <Image
+              src="/brazil.png"
+              width={32}
+              height={32}
+              alt="flag Brazil"
+              title="pt-BR"
+              onClick={() => handleChangeLocale('pt')}
+            />
+          </div>
+          <div>
+            <Image
+              src="/usa.png"
+              width={32}
+              height={32}
+              alt="flag United States of America"
+              title="en-US"
+              onClick={() => handleChangeLocale('en')}
+            />
+          </div>
+        </ContainerLocale>
+        <ImageStyle src={textHeader.data.image.url} alt="André" />
 
-        <Typing hideCursor={true}>
-          <Typing.Delay ms={1200} />
-          <h1>{PrismicDom.RichText.asText(textHeader.data.title)}</h1>
-        </Typing>
+        { locale === 'pt'
+          ? <h1>{PrismicDom.RichText.asText(textHeader.data.titlept)}</h1>
+          : <h1>{PrismicDom.RichText.asText(textHeader.data.titleen)}</h1>
+        }
 
-        <p>{PrismicDom.RichText.asText(textHeader.data.description)}</p>
+        { locale === 'pt'
+          ? <p>{PrismicDom.RichText.asText(textHeader.data.descriptionpt)}</p>
+          :< p>{PrismicDom.RichText.asText(textHeader.data.descriptionen)}</p>
+        }
 
         <IconContainer>
           {imagesHeader.map(header => (
@@ -63,8 +99,15 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
           {skills.map(skill => (
             <Item key={skill.uid}>
               <img src={skill.data.image.url} alt="teste" height="200"/>
-              <strong>{PrismicDom.RichText.asText(skill.data.title)}</strong>
-              <p>{PrismicDom.RichText.asText(skill.data.description)}</p>
+              { locale === 'pt'
+                ? <strong>{PrismicDom.RichText.asText(skill.data.titlept)}</strong>
+                : <strong>{PrismicDom.RichText.asText(skill.data.titleen)}</strong>
+              }
+              { locale === 'pt'
+                ? <p>{PrismicDom.RichText.asText(skill.data.descriptionpt)}</p>
+                : <p>{PrismicDom.RichText.asText(skill.data.descriptionen)}</p>
+              }
+
             </Item>
           ))}
         </Content>
@@ -75,11 +118,20 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
               return (
                 <ExperienceContent key={experience.uid}>
                   <DescriptionExperience>
-                    <h1>{PrismicDom.RichText.asText(experience.data.title)}</h1>
+                    { locale === 'pt'
+                      ? <h1>{PrismicDom.RichText.asText(experience.data.titlept)}</h1>
+                      : <h1>{PrismicDom.RichText.asText(experience.data.titleen)}</h1>
+                    }
                     {experience.data.content.map(content => (
                       <div key={content.id}>
-                        <h2>{PrismicDom.RichText.asText(content.subtitle)}</h2>
-                        <p>{PrismicDom.RichText.asText(content.description)}</p>
+                        { locale === 'pt'
+                          ? <h2>{PrismicDom.RichText.asText(content.subtitlept)}</h2>
+                          : <h2>{PrismicDom.RichText.asText(content.subtitleen)}</h2>
+                        }
+                        { locale === 'pt'
+                          ? <p>{PrismicDom.RichText.asText(content.descriptionpt)}</p>
+                          : <p>{PrismicDom.RichText.asText(content.descriptionen)}</p>
+                        }
                       </div>
 
                     ))}
@@ -96,11 +148,21 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
                   <img src={experience.data.image.url} alt={experience.data.image.alt} height={experience.data.height}/>
                 </ImageExperience>
                 <DescriptionExperience>
-                  <h1>{PrismicDom.RichText.asText(experience.data.title)}</h1>
+                  { locale === 'pt'
+                    ? <h1>{PrismicDom.RichText.asText(experience.data.titlept)}</h1>
+                    : <h1>{PrismicDom.RichText.asText(experience.data.titleen)}</h1>
+                  }
+
                   {experience.data.content.map(content => (
                     <div key={content.id}>
-                      <h2>{PrismicDom.RichText.asText(content.subtitle)}</h2>
-                      <p>{PrismicDom.RichText.asText(content.description)}</p>
+                      { locale === 'pt'
+                        ? <h2>{PrismicDom.RichText.asText(content.subtitlept)}</h2>
+                        : <h2>{PrismicDom.RichText.asText(content.subtitleen)}</h2>
+                      }
+                      { locale === 'pt'
+                        ? <p>{PrismicDom.RichText.asText(content.descriptionpt)}</p>
+                        : <p>{PrismicDom.RichText.asText(content.descriptionen)}</p>
+                      }
                     </div>
 
                   ))}
@@ -111,7 +173,11 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
         </Experiences>
 
         <Technologies>
-          <h1>Alguns dos meus conhecimentos</h1>
+          {
+            locale === 'pt'
+            ? <h1>Alguns dos meus conhecimentos</h1>
+            : <h1>Some of my knowledge</h1>
+          }
           <ContainerTech>
             {technologies.map(tech => (
               <Tech key={tech.uid}>
@@ -130,7 +196,10 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
             <div>
               <img src={textHeader.data.whatsappimage.url} alt={textHeader.data.whatsappimage.alt} width="40" />
               <a href={textHeader.data.whatsapplink.url} target="_blank">
-                {PrismicDom.RichText.asText(textHeader.data.whatsapptext)}
+                {locale === 'pt'
+                  ? PrismicDom.RichText.asText(textHeader.data.whatsapptextpt)
+                  : PrismicDom.RichText.asText(textHeader.data.whatsapptexten)
+                }
               </a>
             </div>
             <div>
@@ -161,7 +230,6 @@ export default function Home({ textHeader, imagesHeader, skills, imagesFooter, t
 }
 
 export const getStaticProps: GetStaticProps<HeaderProps> = async (context) => {
-
   const textHeader = await client().query([
     Prismic.Predicates.at('document.type', 'header')
   ]);

@@ -235,7 +235,8 @@ export const ContactContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding: 6rem;
   width: 100%;
 
   div {
@@ -262,6 +263,21 @@ export const ContactContent = styled.div`
       margin-top: 36px;
     }
   }
+`;
 
+export const ContainerLocale = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 1rem;
+  padding-right: 4rem;
 
+  div {
+    cursor: pointer;
+  }
+
+  div + div {
+    margin-left: 1rem;
+  }
 `;

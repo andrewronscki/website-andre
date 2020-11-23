@@ -54,7 +54,7 @@ export const IconContainer = styled.ul`
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     a {
       display: flex;
       justify-content: center;
@@ -70,6 +70,5 @@ export const IconContainer = styled.ul`
         transition: all 0.5s ease-in-out;
       }
     }
-  }  
+  }
 `;
-
