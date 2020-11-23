@@ -226,7 +226,7 @@ export const ContactImage = styled.div`
   width: 100%;
   animation: ${appearFromLeft} 1s;
 
-  @media (max-width: 830px) {
+  @media (max-width: 914px) {
     display: none;
   }
 `;
@@ -236,8 +236,13 @@ export const ContactContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 6rem;
+  padding-left: 6rem;
   width: 100%;
+
+  @media (max-width: 914px) {
+    align-items: center;
+    padding-left: 0;
+  }
 
   div {
     display: flex;

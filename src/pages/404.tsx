@@ -37,7 +37,7 @@ export default function NotFound() {
           />
         </div>
       </ContainerLocale>
-      <img src={NotFound404} alt="page not found"/>
+      <Image src={NotFound404} width={501} height={272} alt="page not found"/>
       {
         locale === 'pt'
           ? <p>Essa página não existe :(</p>
