@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  
+
   background: linear-gradient(#333, #0E0E10);
 
   p {
@@ -27,5 +27,22 @@ export const GoHome = styled.a`
 
   :hover {
     background: ${shade(0.2, "#EA2845")};
+  }
+`;
+
+export const ContainerLocale = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
+  margin-right: 4rem;
+
+  div {
+    cursor: pointer;
+  }
+
+  div + div {
+    margin-left: 1rem;
   }
 `;
