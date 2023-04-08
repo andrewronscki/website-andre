@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "next": "10.0.2",
     "next-images": "^1.6.0",
     "polished": "^4.0.4",
@@ -20,6 +21,7 @@
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.4",
     "@types/node": "^14.14.9",
     "@types/prismic-dom": "^2.1.1",
     "@types/react": "^17.0.0",
