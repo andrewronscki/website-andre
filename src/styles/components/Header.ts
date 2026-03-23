@@ -9,7 +9,7 @@ export const ContainerHeader = styled.div`
   width: 100%;
   height: 100vh;
 
-  background: url(${background});
+  background: url(${background.src});
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow-x: hidden;
