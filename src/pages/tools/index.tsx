@@ -56,16 +56,18 @@ export default function ToolsHome() {
 
       <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 mt-2">
         {tools.map((tool) => (
-          <Link key={tool.href} href={tool.href}>
-            <a className="card bg-base-200 border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-200 cursor-pointer group">
-              <div className="card-body p-5">
-                <div className="text-3xl mb-2">{tool.icon}</div>
-                <h3 className="card-title text-base group-hover:text-primary transition-colors">
-                  {tool.title}
-                </h3>
-                <p className="text-sm opacity-60">{tool.description}</p>
-              </div>
-            </a>
+          <Link
+            key={tool.href}
+            href={tool.href}
+            className="card bg-base-200 border border-base-300 hover:border-primary hover:shadow-lg transition-all duration-200 cursor-pointer group"
+          >
+            <div className="card-body p-5">
+              <div className="text-3xl mb-2">{tool.icon}</div>
+              <h3 className="card-title text-base group-hover:text-primary transition-colors">
+                {tool.title}
+              </h3>
+              <p className="text-sm opacity-60">{tool.description}</p>
+            </div>
           </Link>
         ))}
       </div>

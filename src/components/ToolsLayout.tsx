@@ -31,14 +31,13 @@ function Sidebar({ onClose }: { onClose?: () => void }) {
   return (
     <div className="flex w-72 flex-col h-full border-r border-base-300 bg-base-200 p-4">
       <div className="flex items-center justify-between h-16 border-b border-base-300 mb-4 pb-4">
-        <Link href="/tools">
-          <a
-            className="flex items-center gap-1"
-            onClick={onClose}
-          >
-            <span className="text-xl font-extrabold text-primary tracking-tight">{'<'}dev</span>
-            <span className="text-xl font-extrabold text-base-content tracking-tight">tools{'>'}</span>
-          </a>
+        <Link
+          href="/tools"
+          className="flex items-center gap-1"
+          onClick={onClose}
+        >
+          <span className="text-xl font-extrabold text-primary tracking-tight">{'<'}dev</span>
+          <span className="text-xl font-extrabold text-base-content tracking-tight">tools{'>'}</span>
         </Link>
         {onClose && (
           <button
@@ -58,26 +57,23 @@ function Sidebar({ onClose }: { onClose?: () => void }) {
         <li className="menu-title text-xs uppercase tracking-widest opacity-50">Ferramentas</li>
         {tools.map((tool) => (
           <li key={tool.href}>
-            <Link href={tool.href}>
-              <a
-                onClick={onClose}
-                className={clsx(
-                  'rounded-lg text-sm',
-                  pathname === tool.href ? active : 'hover:bg-base-300'
-                )}
-              >
-                {tool.label}
-              </a>
+            <Link
+              href={tool.href}
+              onClick={onClose}
+              className={clsx(
+                'rounded-lg text-sm',
+                pathname === tool.href ? active : 'hover:bg-base-300'
+              )}
+            >
+              {tool.label}
             </Link>
           </li>
         ))}
       </ul>
 
       <div className="mt-auto pt-4 border-t border-base-300">
-        <Link href="/">
-          <a className="text-xs text-base-content opacity-50 hover:opacity-100 transition">
-            ← Voltar ao portfólio
-          </a>
+        <Link href="/" className="text-xs text-base-content opacity-50 hover:opacity-100 transition">
+          ← Voltar ao portfólio
         </Link>
       </div>
     </div>
