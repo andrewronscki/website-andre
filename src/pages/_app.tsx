@@ -1,7 +1,8 @@
+import type { AppProps } from 'next/app';
 import GlobalStyle from '@/styles/GlobalStyle';
 import '@/styles/tools.css';
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <GlobalStyle />
@@ -9,5 +10,3 @@ function MyApp({ Component, pageProps }) {
     </>
   );
 }
-
-export default MyApp
