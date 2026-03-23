@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { Document } from "prismic-javascript/types/documents";
@@ -24,6 +24,127 @@ function t(locale: string, pt: string, en: string) {
   return locale === "pt" ? pt : en;
 }
 
+const NAV_FIRST = "André";
+const NAV_LAST  = "Wronscki";
+const NAV_FULL  = NAV_FIRST + " " + NAV_LAST;
+
+type NavPhase = "typing" | "del_last" | "del_first" | "aw" | "sliding" | "final";
+
+function NavLogo() {
+  const [count, setCount] = useState(0);
+  const [phase, setPhase] = useState<NavPhase>("typing");
+
+  useEffect(() => {
+    const tos: ReturnType<typeof setTimeout>[] = [];
+    const later = (fn: () => void, ms: number) => {
+      const id = setTimeout(fn, ms);
+      tos.push(id);
+    };
+
+    if (phase === "typing") {
+      let cur = 0;
+      const tick = () => {
+        cur++;
+        setCount(cur);
+        if (cur >= NAV_FULL.length) {
+          // pausa antes de começar a apagar
+          later(() => { setCount(NAV_LAST.length); setPhase("del_last"); }, 500);
+        } else {
+          later(tick, 80);
+        }
+      };
+      later(tick, 80);
+
+    } else if (phase === "del_last") {
+      // apaga "Wronscki" da direita até sobrar "W" (1 char)
+      let cur = NAV_LAST.length;
+      const tick = () => {
+        cur--;
+        setCount(cur);
+        if (cur <= 1) {
+          later(() => { setCount(NAV_FIRST.length); setPhase("del_first"); }, 120);
+        } else {
+          later(tick, 65);
+        }
+      };
+      later(tick, 65);
+
+    } else if (phase === "del_first") {
+      // apaga "André" da direita até sobrar "A" (1 char)
+      let cur = NAV_FIRST.length;
+      const tick = () => {
+        cur--;
+        setCount(cur);
+        if (cur <= 1) {
+          later(() => setPhase("aw"), 120);
+        } else {
+          later(tick, 80);
+        }
+      };
+      later(tick, 80);
+
+    } else if (phase === "aw") {
+      later(() => setPhase("sliding"), 300);
+    } else if (phase === "sliding") {
+      later(() => setPhase("final"), 700);
+    }
+
+    return () => tos.forEach(clearTimeout);
+  }, [phase]);
+
+  /* ── AW + .dev ── */
+  if (phase === "aw" || phase === "sliding" || phase === "final") {
+    const devIn = phase === "sliding" || phase === "final";
+    return (
+      <span className="font-extrabold tracking-tight text-lg inline-flex items-baseline">
+        <span className="text-primary">AW</span>
+        <span
+          style={{
+            display: "inline-block",
+            opacity: devIn ? 0.6 : 0,
+            transform: devIn ? "translateX(0)" : "translateX(120px)",
+            transition: devIn
+              ? "opacity 0.6s ease-out, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1)"
+              : "none",
+          }}
+        >
+          .dev
+        </span>
+      </span>
+    );
+  }
+
+  /* ── Cursor piscando durante digitação e deleção ── */
+  const cursor = (
+    <span style={{ marginLeft: "1px", animation: "navCursorBlink 0.75s step-end infinite" }}>
+      |
+    </span>
+  );
+
+  if (phase === "typing") {
+    return (
+      <span className="font-extrabold tracking-tight text-lg text-primary whitespace-nowrap">
+        {NAV_FULL.slice(0, count)}{cursor}
+      </span>
+    );
+  }
+
+  if (phase === "del_last") {
+    return (
+      <span className="font-extrabold tracking-tight text-lg text-primary whitespace-nowrap">
+        {NAV_FIRST + " " + NAV_LAST.slice(0, count)}{cursor}
+      </span>
+    );
+  }
+
+  // del_first
+  return (
+    <span className="font-extrabold tracking-tight text-lg text-primary whitespace-nowrap">
+      {NAV_FIRST.slice(0, count) + " W"}{cursor}
+    </span>
+  );
+}
+
 export default function Home({
   textHeader,
   imagesHeader,
@@ -43,13 +164,16 @@ export default function Home({
 
   return (
     <div data-theme="devtools" className="bg-base-100 text-base-content font-sans">
+      <style>{`
+        @keyframes navCursorBlink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+      `}</style>
 
       {/* ── Navbar ──────────────────────────────────────────────── */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 h-16 bg-base-100/80 backdrop-blur border-b border-base-300">
-        <span className="font-extrabold tracking-tight text-lg">
-          <span className="text-primary">AW</span>
-          <span className="opacity-60">.dev</span>
-        </span>
+        <NavLogo />
         <div className="flex items-center gap-4">
           <a href="/tools" className="btn btn-sm btn-ghost text-primary font-semibold hidden sm:flex">
             {t(locale, "🛠 Ferramentas", "🛠 Tools")}
