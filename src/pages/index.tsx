@@ -488,7 +488,7 @@ export default function Home({
                   <h3 className="font-semibold text-base">Faculdade de Tecnologia Rocketseat</h3>
                   <span className="text-xs opacity-40 shrink-0 mt-0.5">Jan 2025 – Mar 2026</span>
                 </div>
-                <p className="text-sm opacity-50">{t(locale, "Pós Tech Developer 360 — Tecnologia e Gestão de Projetos", "Post Tech Developer 360 — Technology and Project Management")}</p>
+                <p className="text-sm opacity-50">{t(locale, "Pós-graduação — Full-Stack com IA", "Post-Graduate — Full-Stack with AI")}</p>
                 <span className="text-xs text-primary/70 font-medium mt-1">{t(locale, "Pós-graduação Lato Sensu", "Post-Graduate")}</span>
               </div>
             </div>
